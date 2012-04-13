@@ -54,11 +54,7 @@ $(OCAMLTOP): $(LIB) ocamltop.cmo
 
 .PHONY: doc depend
 
-doc: all
-	mkdir -p html
-	$(OCAMLFIND) ocamldoc $(OF_FLAGS) -t Gtktop -d html -html gtktop.mli gtktop_installation.mli
-
-webdoc: doc
+webdoc:
 	cp web/index.html web/style.css ../gtktop-gh-pages/
 
 .depend depend:
