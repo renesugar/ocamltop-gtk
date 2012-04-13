@@ -59,12 +59,10 @@ doc: all
 	$(OCAMLFIND) ocamldoc $(OF_FLAGS) -t Gtktop -d html -html gtktop.mli gtktop_installation.mli
 
 webdoc: doc
-	mkdir -p ../gtktop-gh-pages/refdoc
-	cp html/* ../gtktop-gh-pages/refdoc/
 	cp web/index.html web/style.css ../gtktop-gh-pages/
 
 .depend depend:
-	$(OCAMLDEP) odiff*.ml odiff*.mli > .depend
+	$(OCAMLDEP) *.ml > .depend
 
 # installation :
 ################
@@ -81,15 +79,16 @@ uninstall:
 # archive :
 ###########
 archive:
-	git archive --prefix=gtktop-$(VERSION)/ HEAD | gzip > ../gtktop-gh-pages/gtktop-$(VERSION).tar.gz
+	git archive --prefix=ocamltop-gtk-$(VERSION)/ HEAD | \
+		gzip > ../ocamltop-gtk-gh-pages/ocamltop-gtk-$(VERSION).tar.gz
 
 # Cleaning :
 ############
 clean:
-	rm -f *.cm* *.a *.annot *.o gtktop_base.ml
+	rm -f *.cm* *.a *.annot *.o
 
 distclean: clean
-	rm -fr master.Makefile gtktop_installation.ml \
+	rm -fr master.Makefile otop_messages.ml \
 		ocaml_config.sh config.status config.log autom4te.cache META
 
 # headers :
