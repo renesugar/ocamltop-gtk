@@ -55,7 +55,7 @@ $(OCAMLTOP): $(LIB) ocamltop.cmo
 .PHONY: doc depend
 
 webdoc:
-	cp web/index.html web/style.css ../gtktop-gh-pages/
+	cp web/index.html web/style.css ../ocamltop-gtk-gh-pages/
 
 .depend depend:
 	$(OCAMLDEP) *.ml > .depend

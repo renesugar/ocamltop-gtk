@@ -15,189 +15,119 @@
 <div class="span2">&nbsp;</div>
 <!-- ENGLISH -->
 <div class="span8 ">
-<h3>What is DBForge ?</h3>
+<h3>What is OCamltop-gtk ?</h3>
 <p>
-
+OCamltop-gtk is a Gtk2 graphical interface for the OCaml toplevel.
+Like the text mode toplevel, it permits interactive use of the OCaml
+ system through a read-eval-print loop. Some additional functionalities are
+provided:
+</p>
+<ul>
+<li>saving the input code into a file,</li>
+<li>viewing and browsing of computed values in a tree-oriented view,</li>
+<li>easy access to definitions of values, modules, types, ....</li>
+</ul>
+<p>
+One can also create his own graphical toplevel with the tool
+<code><a href="#mk">mk-ocamltop-gtk</a></code>.
+</p>
+<p>
+OCamltop-gtk was previously part of <a href="http://home.gna.org/cameleon/">Cameleon</a>
+under the name "topcameleon" but is now developped separately and is findlib compatible.
+</p>
+<h3>Invocation</h3>
+<p>OCamltop-gtk is launched by the following command:</p>
+<div class="code"><pre>
+ocamltop-gtk [options] [object-files] [source-file]
+</pre>
+</div>
+<p>
+The options are the same as the OCaml toplevel, and files in arguments
+are handled the same way, except that if a source file
+is given, ocamltop-gtk does not exit after having evaluated the code in this
+file, but rather shows the main window with the code in the file still present
+like if the user had typed it. This way, you can type your code after the
+loaded code, and when you're satisfied you can save the whole code in
+one file (by default it is saved in the given source file).
+So ocamltop-gtk cannot be used as a script interpreter, but it
+was not developed for such a purpose.
+</p>
+<h3>Using OCamltop-gtk</h3>
+<p>
+On the OCamltop-gtk main window, the left pane contains
+a list of the defined elements (values, types, modules, ...). The second
+pane shows the selected value, in a tree-oriented way.
+The right pane is the console, with the result on top and the input text
+at the bottom. The &quot;Execute&quot; button executes the code in the input widget.
+</p>
+<p>
+Each time you define a new element, it is added to the list of elements.
+When you select an element is this list, its value is shown (if it is a value)
+in the 'tree view', and the result box jumps to its definition so you
+can see how it was defined.
+</p>
+<p>Errors in the input field are hilighted when you execute a phrase
+(do not forget the &quot;;;&quot; at the end of your phrases).
+</p>
+<p>You can use the &quot;File/Load file ...&quot;, &quot;File/Save&quot; and &quot;File/Save as ...&quot;
+menus to load and save files. Note that the current file you're using is displayed
+in the title bar. It is the file your code will be saved into if you use the
+&quot;File/Save&quot; menu.
+</p>
+<p>
+The &quot;File/Preferences&quot; menu opens the configuration window where you can change
+the style scheme and choose whether the values in the tree are automatically expanded
+or not (default is true, but it can take some time and memory for very large values).
+</p>
+<h3 name="mk">Creating a graphical toplevel with mk-ocamltop-gtk</h3>
+<p>
+As for the OCaml toplevel, you have a command which lets you define
+your own graphical toplevel. This command is
+<code>mk-ocamltop-gtk</code> and is used the same way as the <tt>ocamlmktop</tt> command
+(see the OCaml manual for more information). The only differences are:
+</p>
+<ul>
+<li>you get a graphical toplevel instead of a text one,</li>
+<li>it already contains the following libraries: Unix, LablGtk, Lablglade, Config_file, Configwin, Gmylist, Okey, Lablgtksourceview2, Gtktop.</li>
+</ul>
 <h3>Download</h3>
 <p>
-DBForge is <a href="https://github.com/zoggy/dbforge">hosted on Github</a>.
+OCamltop-gtk is <a href="https://github.com/zoggy/ocamltop-gtk">hosted on Github</a>.
 </p>
 <h4>Releases</h4>
 <ul>
-<li><a href="dbforge-2.0.tar.gz">2.0</a> [2012-04-12]:
+<li><a href="ocamltop-gtk-2.0.tar.gz">2.0</a> [2012-04-12]:
 first release after extraction from Cameleon.</li>
 </ul>
 
 <h3>Installation</h3>
 <p>
-DBForge requires the following libraries to be installed:
+OCamltop-gtk requires <a href="http://zoggy.github.com/gtktop">Gtktop</a> &gt;= 2.0 to be installed.
+You must also have the compiled sources of OCaml somewhere.
 </p>
-<ul>
-<li><a href="http://caml.inria.fr/">OCaml</a> &gt; 3.11,</li>
-<li><a href="http://projects.camlcity.org/projects/findlib.html">findlib</a>,</li>
-<li><a href="http://lablgtk.forge.ocamlcore.org/">LablGtk</a> &gt;= 2.14.2, installed with ocamlfind,</li>
-<li><a href="http://config-file.forge.ocamlcore.org/">Config-file</a> &gt;= 1.1,</li>
-<li><a href="http://gtk-extras.forge.ocamlcore.org/">LablGtk-extras</a> &gt;= 1.1,</li>
-<li><a href="http://raevnos.pennmush.org/code/ocaml-mysql/">OCaml-MySQL</a> &gt;= 1.0.4,</li>
-<li><a href="http://tech.motion-twin.com/xmllight.html">Xml-light</a>.</li>
-</ul>
 <p>To compile and install:
 </p>
 <ul>
-<li><span class="code">tar xvfz dbforge-XXX.tar.gz</span></li>
-<li><span class="code">cd dbforge-XXX</span></li>
+<li><span class="code">tar xvfz ocamltop-gtk-XXX.tar.gz</span></li>
+<li><span class="code">cd ocamltop-gtk-XXX</span></li>
+<li><span class="code">./configure --with-ocaml-src-dir=/directory/of/compiled/sources/of/ocaml</span></li>
 <li><span class="code">make all install</span></li>
 </ul>
 <p>
-This will install the following findlib packages:
- <code>dbforge, dbforge.gtk, dbforge.sql, dbforge.mysql and sqml</code>
-</p>
-<p>
-Executables (<code>dbforge[.byte]</code>, <code>dbforge-gtk[.byte]</code>) will be installed in
-ocaml bin directory.
+This will install the findlib package "ocamltop-gtk".
+The executables <code>ocamltop-gtk</code> and <code>mk-ocamltop-gtk</code>
+will be installed in ocaml bin directory.
 </p>
 
 <h3>License</h3>
-DBForge is released under the <a href="http://www.gnu.org/licenses/gpl.html">LGPL v3</a>.
+OCamltop-gtk is released under the <a href="http://www.gnu.org/licenses/gpl.html">LGPL v3</a>.
 
 <h3>Author and contact</h3>
 Maxence Guesdon <code>&lt;Maxence 'DOT' Guesdon 'AT' inria 'DOT' fr&gt;</code>
-with Pierre-Yves Strub and Nadji Gauthier.
 
 </div>
 <div class="span2">&nbsp;</div>
-<!--
-<div class="span1">&nbsp;</div>
-<div class="span5 lang french">
-<h3>Qu'est-ce que DBForge ?</h3>
-<p>DBForge est un outil pour décrire des schémas de base de données
-et générer le code OCaml permettant d'accéder à ces bases.
-</p>
-<h3>Principe</h3>
-<p>L'idée de l'outil est basée sur le problème suivant:
-La création de fonctions exécutant des requêtes SQL
-</p>
-<ul>
-<li>est répétitive: traduction de paramètres en chaînes de caractères et
-concaténation pour créer les requête, exécution de la requête, test de la
-valeur de retour, traduction des données (pour les requêtes
-<code>select</code>) vers les type OCaml correspondant,
-</li>
-<li>est source d'erreurs: une erreur dans la concaténation de chaînes
-pour créer la requête (par exemple l'oubli d'un espace) ou dans les
-chaînes concaténées causer une erreur <em>à l'exécution</em>,
-</li>
-<li>ne permet pas une bonne maintenabilité: en effet, quand le schéma
-de la base de données est modifié, il faut vérifier que chaque requête
-est encore correcte par rapport au schéma.
-</li>
-</ul>
-<p>Pour résoudre ces problèmes, nous voulons</p>
-<ul><li>générer automatiquement les fonctions qui exécutent les requêtes de base
-sur chaque table,
-</li>
-<li>permettre à l'utilisateur la définition de requêtes complexes, en
-langage SQL; les fonctions OCaml exécutant ces requêtes étant automatiquement
-générées, nous voulons garantir <em> à la compilation </em>que l'exécution
-de ces requêtes n'échouera (par exemple à cause d'erreurs
-de syntaxe ou encore par référencement de colonne non existente dans une table),
-</li>
-<li>vérifier automatiquement et invalider des requêtes quand le schéma de la
-base est modifié.
-</li>
-</ul>
-<p>Pour faire tout cela, nous avons besoin des informations suivantes à propos
-de chaque colonne de chaque table:
-</p>
-<ul>
-<li>son nom,</li>
-<li>la définition de son type selon la base de données cible,</li>
-<li>des attributs indiquant par exemple si la colonne peut être NULL,
-si c'est une clé,</li>
-<li>son type OCaml dans le code source que nous voulons générer,</li>
-<li>les fonctions à utiliser pour traduire les valeurs de la base de
-données vers des valeurs OCaml et réciproquement.</li>
-</ul>
-<p>La liste des tables avec les informations ci-dessus pour chaque colonne
-est ce que nous appelons le schéma de base de données.
-</p>
-<p>L'outil DBForge permet de définir un tel schéma dans une interface
-graphique et de générer le code OCaml correspondant. L'utilisateur peut également
-définir des requêtes SQL pour qu'elles soient encapsulées dans des fonctions OCaml
-dans le code généré. Pour l'instant, seules les requêtes de
-type &quot;select&quot; et &quot;union&quot; sont supportées.
-</p>
-<h3>Exemple</h3>
-<p>La distribution contient un exemple dans le répertoire <code>src/dbforge/example</code>.
-On y trouve plusieurs fichiers.
-</p>
-<p><code>Makefile</code> est le fichier pour compiler avec
-<code>make</code>.
-</p>
-<p><code>base.xml</code> est le fichier contenant le schéma. Il peut être édité par l'éditeur graphique
-lancé avec la commande suivante:
-</p>
-<div class="code"><pre>dbforge2.gui.{x,byte} base.xml</pre></div>
-<p>Le code OCaml est généré à partir de ce fichier par la commande suivante:
-</p>
-<div class="code"><pre>dbforge2.{x,byte} -o base.ml base.xml</pre></div>
-<p>Le fichier <code>base.ml</code> contient alors le code OCaml généré. Ce dernier utilise deux modules
-installés en même temps que Cameleon2: Dbf_sql_driver et Dbf_sql_misc.
-On peut obtenir le fichier d'interface avec la commande suivante:
-</p>
-<div class="code"><pre>ocamlc -I +cameleon2 -i base.ml &gt; base.mli</pre></div>
-<p>Le code généré est composé de foncteurs, un par table et un pour les requêtes
-additionnelles. Ces foncteurs prennent tous en paramètre un module du type
-Dbf_sql_driver.SqlDriver, qui permet d'abstraire le système de gestion de base de
-données utilisé en utilisant des modules partageant la même interface.
-</p>
-<p><code>example.ml</code> est le fichier principal de l'exemple. Il utilise le module Dbf_mysql
-dont le source est installé en même temps que Cameleon2. Comme il nécessite
-que la bibliothèque OCaml-Mysql soit installée, il n'est pas compilé à l'installation
-mais doit être compilé par l'application qui souhaite s'en servir.
-Ce module est du type Dbf_sql_driver.SqlDriver et peut donc être passé en paramètre
-aux foncteurs générés dans le fichier
-<code>base.ml</code>.
- Les modules obtenus fournissent les fonctions d'accès à la base de données.
-</p>
 
-<h3>Téléchargement</h3>
-<p>
-DBForge is <a href="https://github.com/zoggy/dbforge">hosted on Github</a>.
-</p>
-<h4>Releases</h4>
-<ul>
-<li><a href="dbforge-2.0.tar.gz">1.0</a> [2012-04-12]:
-first release after extraction from Cameleon.</li>
-</ul>
-
-<h3>Installation</h3>
-<p>
-DBForge nécessite l'installation de
-</p>
-<ul>
-<li>href="http://lablgtk.forge.ocamlcore.org/">LablGtk</a> &gt;= 2.14.1, installé avec ocamlfind,</li>
-</ul>
-<p>To compile and install:
-</p>
-<ul>
-<li><span class="code">tar xvfz dforge-XXX.tar.gz</span></li>
-<li><span class="code">cd dbforge-XXX</span></li>
-<li><span class="code">make all install</span></li>
-</ul>
-
-<h3>License</h3>
-<p>
-DBForge is released under the <a href="http://www.gnu.org/licenses/gpl.html">LGPL v3</a>.
-</p>
-
-<h3>Auteur et contact</h3>
-<p>
-Maxence Guesdon <code>&lt;Maxence 'DOT' Guesdon 'AT' inria 'DOT' fr&gt;</code>
-avec Pierre-Yves Strub et Nadji Gauthier.
-</p>
-</div>
--->
 </div>
 </div>
 </div>
