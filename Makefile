@@ -1,5 +1,5 @@
 #################################################################################
-#                Gtktop                                                         #
+#                OCamltop-gtk                                                   #
 #                                                                               #
 #    Copyright (C) 2005-2012 Institut National de Recherche en Informatique     #
 #    et en Automatique. All rights reserved.                                    #
@@ -94,7 +94,7 @@ distclean: clean
 
 # headers :
 ###########
-HEADFILES=Makefile *.ml *.mli *.ml.in
+HEADFILES=Makefile *.ml *.ml.in
 .PHONY: headers noheaders
 headers:
 	headache -h header -c ~/.headache_config $(HEADFILES)
