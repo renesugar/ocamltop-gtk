@@ -1,0 +1,18 @@
+        Gtktop installation
+
+*** What you need ***
+- OCaml 3.12 (or later) installed
+- findlib
+     http://projects.camlcity.org/projects/findlib.html
+- Lablgtk2 >= 2.14.2 installed with findlib
+     http://lablgtk.forge.ocamlcore.org/
+- LablGtk-extras >= 1.1
+     http://gtk-extras.forge.ocamlcore.org/
+- make ;-)
+
+*** How to compile ***
+- ./configure
+- make all
+- make install
+
+This will install findlib package "gtktop".
