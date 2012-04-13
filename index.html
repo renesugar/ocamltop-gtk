@@ -1,1 +1,135 @@
-My GitHub Page
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+<title>OCamltop-gtk: Gtk interface to OCaml toplevel</title>
+<link type="text/css" rel="stylesheet" href="style.css" title="Default"/>
+</head>
+<body><div id="page">
+<div class="container">
+<div class="row-fluid">
+<div class="span4">&nbsp;</div>
+<div class="span6"><h1>OCamltop-gtk</h1></div>
+</div>
+<div class="row-fluid">
+<div class="span2">&nbsp;</div>
+<!-- ENGLISH -->
+<div class="span8 ">
+<h3>What is OCamltop-gtk ?</h3>
+<p>
+OCamltop-gtk is a Gtk2 graphical interface for the OCaml toplevel.
+Like the text mode toplevel, it permits interactive use of the OCaml
+ system through a read-eval-print loop. Some additional functionalities are
+provided:
+</p>
+<ul>
+<li>saving the input code into a file,</li>
+<li>viewing and browsing of computed values in a tree-oriented view,</li>
+<li>easy access to definitions of values, modules, types, ....</li>
+</ul>
+<p>
+One can also create his own graphical toplevel with the tool
+<code><a href="#mk">mk-ocamltop-gtk</a></code>.
+</p>
+<p>
+OCamltop-gtk was previously part of <a href="http://home.gna.org/cameleon/">Cameleon</a>
+under the name "topcameleon" but is now developped separately and is findlib compatible.
+</p>
+<h3>Invocation</h3>
+<p>OCamltop-gtk is launched by the following command:</p>
+<div class="code"><pre>
+ocamltop-gtk [options] [object-files] [source-file]
+</pre>
+</div>
+<p>
+The options are the same as the OCaml toplevel, and files in arguments
+are handled the same way, except that if a source file
+is given, ocamltop-gtk does not exit after having evaluated the code in this
+file, but rather shows the main window with the code in the file still present
+like if the user had typed it. This way, you can type your code after the
+loaded code, and when you're satisfied you can save the whole code in
+one file (by default it is saved in the given source file).
+So ocamltop-gtk cannot be used as a script interpreter, but it
+was not developed for such a purpose.
+</p>
+<h3>Using OCamltop-gtk</h3>
+<p>
+On the OCamltop-gtk main window, the left pane contains
+a list of the defined elements (values, types, modules, ...). The second
+pane shows the selected value, in a tree-oriented way.
+The right pane is the console, with the result on top and the input text
+at the bottom. The &quot;Execute&quot; button executes the code in the input widget.
+</p>
+<p>
+Each time you define a new element, it is added to the list of elements.
+When you select an element is this list, its value is shown (if it is a value)
+in the 'tree view', and the result box jumps to its definition so you
+can see how it was defined.
+</p>
+<p>Errors in the input field are hilighted when you execute a phrase
+(do not forget the &quot;;;&quot; at the end of your phrases).
+</p>
+<p>You can use the &quot;File/Load file ...&quot;, &quot;File/Save&quot; and &quot;File/Save as ...&quot;
+menus to load and save files. Note that the current file you're using is displayed
+in the title bar. It is the file your code will be saved into if you use the
+&quot;File/Save&quot; menu.
+</p>
+<p>
+The &quot;File/Preferences&quot; menu opens the configuration window where you can change
+the style scheme and choose whether the values in the tree are automatically expanded
+or not (default is true, but it can take some time and memory for very large values).
+</p>
+<h3 name="mk">Creating a graphical toplevel with mk-ocamltop-gtk</h3>
+<p>
+As for the OCaml toplevel, you have a command which lets you define
+your own graphical toplevel. This command is
+<code>mk-ocamltop-gtk</code> and is used the same way as the <tt>ocamlmktop</tt> command
+(see the OCaml manual for more information). The only differences are:
+</p>
+<ul>
+<li>you get a graphical toplevel instead of a text one,</li>
+<li>it already contains the following libraries: Unix, LablGtk, Lablglade, Config_file, Configwin, Gmylist, Okey, Lablgtksourceview2, Gtktop.</li>
+</ul>
+<h3>Download</h3>
+<p>
+OCamltop-gtk is <a href="https://github.com/zoggy/ocamltop-gtk">hosted on Github</a>.
+</p>
+<h4>Releases</h4>
+<ul>
+<li><a href="ocamltop-gtk-2.0.tar.gz">2.0</a> [2012-04-12]:
+first release after extraction from Cameleon.</li>
+</ul>
+
+<h3>Installation</h3>
+<p>
+OCamltop-gtk requires <a href="http://zoggy.github.com/gtktop">Gtktop</a> &gt;= 2.0 to be installed.
+You must also have the compiled sources of OCaml somewhere.
+</p>
+<p>To compile and install:
+</p>
+<ul>
+<li><span class="code">tar xvfz ocamltop-gtk-XXX.tar.gz</span></li>
+<li><span class="code">cd ocamltop-gtk-XXX</span></li>
+<li><span class="code">./configure --with-ocaml-src-dir=/directory/of/compiled/sources/of/ocaml</span></li>
+<li><span class="code">make all install</span></li>
+</ul>
+<p>
+This will install the findlib package "ocamltop-gtk".
+The executables <code>ocamltop-gtk</code> and <code>mk-ocamltop-gtk</code>
+will be installed in ocaml bin directory.
+</p>
+
+<h3>License</h3>
+OCamltop-gtk is released under the <a href="http://www.gnu.org/licenses/gpl.html">LGPL v3</a>.
+
+<h3>Author and contact</h3>
+Maxence Guesdon <code>&lt;Maxence 'DOT' Guesdon 'AT' inria 'DOT' fr&gt;</code>
+
+</div>
+<div class="span2">&nbsp;</div>
+
+</div>
+</div>
+</div>
+</body>
+</html>
