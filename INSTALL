@@ -9,7 +9,7 @@
 - make ;-)
 
 *** How to compile ***
-- ./configure
+- ./configure --with-ocaml-src-dir=/directory/of/compiled/ocaml/sources
 - make all
 - make install
 

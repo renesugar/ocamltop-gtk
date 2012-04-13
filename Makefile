@@ -37,7 +37,7 @@ INCLUDES= \
 COMPFLAGS= -annot $(INCLUDES)
 
 LIB=ocamltop.cma
-OCAMLTOP=ocamltop
+OCAMLTOP=ocamltop-gtk
 
 CMOFILES=otop_messages.cmo otop_outvalue.cmo
 CMIFILES=$(CMOFILES:.cmo=.cmi)
@@ -66,11 +66,12 @@ install: all
 	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
 	$(LIB) $(CMIFILES) ocamltop.cmo
 	$(MKDIR) $(OCAMLBIN)
-	$(CP) mk-ocamltop-gtk $(OCAMLBIN)/
+	$(CP) mk-ocamltop-gtk $(OCAMLTOP) $(OCAMLBIN)/
 
 uninstall:
 	ocamlfind remove $(PACKAGE)
 	$(RM) $(OCAMLBIN)/mk-ocamltop-gtk
+	$(RM) $(OCAMLBIN)/$(OCAMLTOP)
 
 # archive :
 ###########

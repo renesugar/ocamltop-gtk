@@ -3,7 +3,7 @@
 *.a
 *.annot
 .chamo*
-ocamltop
+ocamltop-gtk
 mk-ocamltop-gtk
 otop_messages.ml
 META
