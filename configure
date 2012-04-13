@@ -564,13 +564,12 @@ PACKAGE_URL=
 ac_unique_file="master.Makefile.in"
 ac_subst_vars='LTLIBOBJS
 LIBOBJS
+OCAML_SRC_DIR
 PACKAGE
 VERSION
 DEBUG_LEVEL
-GLADEDIR
 ROOT
 EXEC_PREFIX
-LABLGLADECC
 OCAMLFIND
 OCAMLDOC
 OCAMLBIN
@@ -623,6 +622,7 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+with_ocaml_src_dir
 with_debug_level
 '
       ac_precious_vars='build_alias
@@ -1236,6 +1236,8 @@ if test -n "$ac_init_help"; then
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-ocaml-src-dir=dir   Indicate the absolute path to ocaml compiled sources
+
   --with-debug-level=n   Set debug level to n [default=0]
 
 
@@ -1669,7 +1671,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 VERSION=2.0
-PACKAGE=gtktop
+PACKAGE=ocamltop-gtk
 
 # The root directory where we will compile
 ROOT=`pwd`
@@ -1688,7 +1690,21 @@ if test "$datadir" = "\${prefix}/share" ; then
         datadir=$prefix/share
 fi
 
-GLADEDIR=$datadir/glade
+##########################
+# OCaml src dir
+##########################
+OCAML_SRC_DIR=
+
+# Check whether --with-ocaml-src-dir was given.
+if test "${with_ocaml_src_dir+set}" = set; then :
+  withval=$with_ocaml_src_dir;  OCAML_SRC_DIR="$withval"
+fi
+
+
+if test "$OCAML_SRC_DIR" = "" ; then \
+  echo "FATAL: No OCaml compiled sources directory indicated"; \
+  echo "please use the --with-ocaml-src-dir option" ; exit 1 ; \
+fi
 
 ##########################
 # debugging
@@ -1724,9 +1740,8 @@ echo Debug level is set to $DEBUG_LEVEL
 
 
 
-
 # Finally create the master.Makefile.in
-ACFILES="master.Makefile META gtktop_installation.ml"
+ACFILES="master.Makefile otop_messages.ml"
 ac_config_files="$ac_config_files $ACFILES"
 
 cat >confcache <<\_ACEOF
@@ -2897,11 +2912,6 @@ $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
 chmod a-w master.Makefile
-chmod a-w META
-chmod a-w gtktop_installation.ml
+chmod a-w otop_messages.ml
 
-cat << EOF
-====
-The following package will be installed with findlib: $PACKAGE
-Glade file will be installed in $GLADEDIR
-EOF
+

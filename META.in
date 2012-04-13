@@ -1,7 +1,0 @@
-version = "@VERSION@"
-description = "Library to build graphical toplevels"
-requires = "lablgtk2.glade,lablgtk2-extras.configwin"
-archive(byte) = "gtktop.cma"
-archive(native) = "gtktop.cmxa"
-archive(toploop) = "gtktop.cma"
-

@@ -26,7 +26,7 @@
 AC_INIT(master.Makefile.in)
 
 VERSION=2.0
-PACKAGE=gtktop
+PACKAGE=ocamltop-gtk
 
 # The root directory where we will compile
 ROOT=`pwd`
@@ -45,7 +45,19 @@ if test "$datadir" = "\${prefix}/share" ; then
         datadir=$prefix/share
 fi
 
-GLADEDIR=$datadir/glade
+##########################
+# OCaml src dir
+##########################
+OCAML_SRC_DIR=
+AC_ARG_WITH(ocaml-src-dir,
+[  --with-ocaml-src-dir=dir   Indicate the absolute path to ocaml compiled sources
+],
+[ OCAML_SRC_DIR="$withval"])
+
+if test "$OCAML_SRC_DIR" = "" ; then \
+  echo "FATAL: No OCaml compiled sources directory indicated"; \
+  echo "please use the --with-ocaml-src-dir option" ; exit 1 ; \
+fi
 
 ##########################
 # debugging
@@ -72,23 +84,17 @@ AC_SUBST(OCAMLLIB)
 AC_SUBST(OCAMLBIN)
 AC_SUBST(OCAMLDOC)
 AC_SUBST(OCAMLFIND)
-AC_SUBST(LABLGLADECC)
 AC_SUBST(EXEC_PREFIX)
 AC_SUBST(ROOT)
-AC_SUBST(GLADEDIR)
 AC_SUBST(DEBUG_LEVEL)
 AC_SUBST(VERSION)
 AC_SUBST(PACKAGE)
+AC_SUBST(OCAML_SRC_DIR)
 
 # Finally create the master.Makefile.in
-ACFILES="master.Makefile META gtktop_installation.ml"
+ACFILES="master.Makefile otop_messages.ml"
 AC_OUTPUT($ACFILES)
 chmod a-w master.Makefile
-chmod a-w META
-chmod a-w gtktop_installation.ml
+chmod a-w otop_messages.ml
 
-cat << EOF
-====
-The following package will be installed with findlib: $PACKAGE
-Glade file will be installed in $GLADEDIR
-EOF
+

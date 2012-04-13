@@ -25,27 +25,28 @@
 #
 include master.Makefile
 
-PACKAGES=lablgtk2.glade,lablgtk2-extras.configwin
+PACKAGES=gtktop,lablgtk2.init
 
 OF_FLAGS=-package $(PACKAGES)
-COMPFLAGS= -annot
 
-LIB=gtktop.cmxa
-LIB_BYTE=$(LIB:.cmxa=.cma)
+INCLUDES= \
+	-I $(OCAML_SRC_DIR)/parsing \
+	-I $(OCAML_SRC_DIR)/driver \
+	-I $(OCAML_SRC_DIR)/utils
 
-CMXFILES=gtktop_base.cmx gtktop_installation.cmx gtktop.cmx
-CMOFILES=$(CMXFILES:.cmx=.cmo)
-CMIFILES=$(CMXFILES:.cmx=.cmi)
+COMPFLAGS= -annot $(INCLUDES)
 
-all: byte opt
-byte: $(LIB_BYTE)
-opt: $(LIB)
+OCAMLTOP=ocamltop
 
-$(LIB): $(CMIFILES) $(CMXFILES)
-	$(OCAMLFIND) ocamlopt -a -o $@ $(OF_FLAGS) $(CMXFILES)
+CMOFILES=otop_messages.cmo otop_outvalue.cmo ocamltop.cmo
+CMIFILES=$(CMOFILES:.cmo=.cmi)
 
-$(LIB_BYTE): $(CMIFILES) $(CMOFILES)
-	$(OCAMLFIND) ocamlc -a -o $@ $(OF_FLAGS) $(CMOFILES)
+all: $(OCAMLTOP)
+
+$(OCAMLTOP): $(CMIFILES) $(CMOFILES)
+	$(OCAMLFIND) ocamlc -o $@ $(OF_FLAGS) -linkpkg $(COMPFLAGS) \
+		toplevellib.cma \
+	$(CMOFILES)
 
 .PHONY: doc depend
 
