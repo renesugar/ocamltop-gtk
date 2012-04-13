@@ -101,6 +101,4 @@ include .depend
 
 # Additional dependencies :
 ###########################
-gtktop_base.ml: gtktop.glade
-	$(LABLGLADECC) -hide-default $< > $@
 
