@@ -98,5 +98,6 @@ chmod a-w master.Makefile
 chmod a-w otop_messages.ml
 chmod a-w META
 chmod a-w mk-ocamltop-gtk
+chmod a+x mk-ocamltop-gtk
 
 

@@ -70,7 +70,7 @@ webdoc: doc
 ################
 install: all
 	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
-	$(LIB) $(CMIFILES)
+	$(LIB) $(CMIFILES) ocamltop.cmo
 	$(MKDIR) $(OCAMLBIN)
 	$(CP) mk-ocamltop-gtk $(OCAMLBIN)/
 

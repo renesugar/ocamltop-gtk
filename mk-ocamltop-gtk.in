@@ -19,7 +19,7 @@
 
 if : == x
 then # Bourne Shell or zsh
-     exec @OCAMLFIND@ ocamlc -package lalbgkt2.init,gtktop,ocamltop-gtk -linkpkg -linkall "$@" ocamltop.cmo
+     exec @OCAMLFIND@ ocamlc -package lablgtk2.init,gtktop,ocamltop-gtk -linkpkg -linkall "$@" ocamltop.cmo
 else # MPW Shell
      @OCAMLFIND@ ocamlc -package lablgtk2.init,gtktop,ocamltop-gtk -linkpkg {"parameters"} ocamltop.cmo
      exit {status}
