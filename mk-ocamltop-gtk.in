@@ -1,0 +1,27 @@
+#!/bin/sh
+#########################################################################
+#                                                                       #
+#                            Objective Caml                             #
+#                                                                       #
+#            Maxence Guesdon, projet Cristal, INRIA Rocquencourt        #
+#                                                                       #
+#   Copyright 2002 Institut National de Recherche en Informatique et    #
+#   en Automatique.  All rights reserved.  This file is distributed     #
+#   under the terms of the GNU General Public License version 2.        #
+#                                                                       #
+#########################################################################
+# From the original ocamlmktop script by Damien Doligez
+
+# $Id: cam-mktop2.in 716 2009-09-22 05:37:51Z zoggy $
+
+
+# Multi-shell script.  Works under Bourne Shell, MPW Shell, zsh.
+
+if : == x
+then # Bourne Shell or zsh
+     exec @OCAMLFIND@ ocamlc -package lalbgkt2.init,gtktop,ocamltop-gtk -linkpkg -linkall "$@" ocamltop.cmo
+else # MPW Shell
+     @OCAMLFIND@ ocamlc -package lablgtk2.init,gtktop,ocamltop-gtk -linkpkg {"parameters"} ocamltop.cmo
+     exit {status}
+End # uppercase E because "end" is a keyword in zsh
+fi

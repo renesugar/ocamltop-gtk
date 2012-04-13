@@ -1,0 +1,6 @@
+version = "@VERSION@"
+description = "Gtk interface to ocaml toplevel"
+requires = "gtktop"
+archive(byte) = "ocamltop.cma"
+archive(toploop) = "ocamltop.cma"
+

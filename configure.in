@@ -92,9 +92,11 @@ AC_SUBST(PACKAGE)
 AC_SUBST(OCAML_SRC_DIR)
 
 # Finally create the master.Makefile.in
-ACFILES="master.Makefile otop_messages.ml"
+ACFILES="master.Makefile META otop_messages.ml mk-ocamltop-gtk"
 AC_OUTPUT($ACFILES)
 chmod a-w master.Makefile
 chmod a-w otop_messages.ml
+chmod a-w META
+chmod a-w mk-ocamltop-gtk
 
 

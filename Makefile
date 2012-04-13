@@ -36,17 +36,21 @@ INCLUDES= \
 
 COMPFLAGS= -annot $(INCLUDES)
 
+LIB=ocamltop.cma
 OCAMLTOP=ocamltop
 
-CMOFILES=otop_messages.cmo otop_outvalue.cmo ocamltop.cmo
+CMOFILES=otop_messages.cmo otop_outvalue.cmo
 CMIFILES=$(CMOFILES:.cmo=.cmi)
 
 all: $(OCAMLTOP)
 
-$(OCAMLTOP): $(CMIFILES) $(CMOFILES)
+$(LIB): $(CMIFILES) $(CMOFILES)
+	$(OCAMLFIND) ocamlc -a -o $@ $(OF_FLAGS) $(COMPFLAGS) \
+	toplevellib.cma $(CMOFILES)
+
+$(OCAMLTOP): $(LIB) ocamltop.cmo
 	$(OCAMLFIND) ocamlc -o $@ $(OF_FLAGS) -linkpkg $(COMPFLAGS) \
-		toplevellib.cma \
-	$(CMOFILES)
+	$(LIB) ocamltop.cmo
 
 .PHONY: doc depend
 
@@ -64,13 +68,15 @@ webdoc: doc
 
 # installation :
 ################
-install: byte opt
+install: all
 	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
-	$(LIB) $(CMIFILES) $(LIB:.cmxa=.a) $(LIB_BYTE) \
-	gtktop.mli gtktop_installation.ml
+	$(LIB) $(CMIFILES)
+	$(MKDIR) $(OCAMLBIN)
+	$(CP) mk-ocamltop-gtk $(OCAMLBIN)/
 
 uninstall:
 	ocamlfind remove $(PACKAGE)
+	$(RM) $(OCAMLBIN)/mk-ocamltop-gtk
 
 # archive :
 ###########

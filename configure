@@ -1741,7 +1741,7 @@ echo Debug level is set to $DEBUG_LEVEL
 
 
 # Finally create the master.Makefile.in
-ACFILES="master.Makefile otop_messages.ml"
+ACFILES="master.Makefile META otop_messages.ml mk-ocamltop-gtk"
 ac_config_files="$ac_config_files $ACFILES"
 
 cat >confcache <<\_ACEOF
@@ -2913,5 +2913,7 @@ fi
 
 chmod a-w master.Makefile
 chmod a-w otop_messages.ml
+chmod a-w META
+chmod a-w mk-ocamltop-gtk
 
 

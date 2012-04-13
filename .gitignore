@@ -3,8 +3,9 @@
 *.a
 *.annot
 .chamo*
-gtktop_base.ml
-gtktop_installation.ml
+ocamltop
+mk-ocamltop-gtk
+otop_messages.ml
 META
 master.Makefile
 config.log
