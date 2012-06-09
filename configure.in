@@ -25,7 +25,7 @@
 # check for one particular file of the sources
 AC_INIT(master.Makefile.in)
 
-VERSION=2.0
+VERSION=2.1
 PACKAGE=ocamltop-gtk
 
 # The root directory where we will compile
@@ -43,20 +43,6 @@ if test "$datadir" = "\${datarootdir}" ; then
 fi
 if test "$datadir" = "\${prefix}/share" ; then
         datadir=$prefix/share
-fi
-
-##########################
-# OCaml src dir
-##########################
-OCAML_SRC_DIR=
-AC_ARG_WITH(ocaml-src-dir,
-[  --with-ocaml-src-dir=dir   Indicate the absolute path to ocaml compiled sources
-],
-[ OCAML_SRC_DIR="$withval"])
-
-if test "$OCAML_SRC_DIR" = "" ; then \
-  echo "FATAL: No OCaml compiled sources directory indicated"; \
-  echo "please use the --with-ocaml-src-dir option" ; exit 1 ; \
 fi
 
 ##########################

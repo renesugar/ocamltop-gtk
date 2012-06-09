@@ -77,7 +77,7 @@ class param () =
       match pat.ppat_desc with
         Ppat_any -> []
       |	Ppat_var s ->
-          [ { ele_name = s ; ele_kind = Value }, pos ]
+          [ { ele_name = s.Location.txt ; ele_kind = Value }, pos ]
       |	Ppat_tuple l ->
           List.flatten (List.map (self#handle_pattern pos) l)
       |	_ -> []
@@ -86,25 +86,25 @@ class param () =
       match i.pstr_desc with
         Pstr_type l ->
           List.map
-            (fun (s,_) -> ({ ele_name = s; ele_kind = Type }, pos) )
+            (fun (s,_) -> ({ ele_name = s.Location.txt; ele_kind = Type }, pos) )
             l
       |	Pstr_value (_, pat_exp_list) ->
           List.flatten (List.map (fun (p,_) -> self#handle_pattern pos p) pat_exp_list)
       |	Pstr_exception (s,_)
       |	Pstr_exn_rebind (s,_) ->
-          [ { ele_name = s; ele_kind = Exception }, pos ]
+          [ { ele_name = s.Location.txt; ele_kind = Exception }, pos ]
       |	Pstr_class l ->
           List.map
-            (fun pci -> { ele_name = pci.pci_name; ele_kind = Class}, pos)
+            (fun pci -> { ele_name = pci.pci_name.Location.txt; ele_kind = Class}, pos)
             l
       |	Pstr_class_type l ->
           List.map
-            (fun pci -> { ele_name = pci.pci_name; ele_kind = Class_type}, pos)
+            (fun pci -> { ele_name = pci.pci_name.Location.txt; ele_kind = Class_type}, pos)
             l
       |	Pstr_module (s,_) ->
-          [ { ele_name = s; ele_kind = Module}, pos ]
+          [ { ele_name = s.Location.txt; ele_kind = Module}, pos ]
       |	Pstr_modtype (s,_) ->
-          [ { ele_name = s; ele_kind = Module_type}, pos ]
+          [ { ele_name = s.Location.txt; ele_kind = Module_type}, pos ]
       |	 _ ->
           []
 

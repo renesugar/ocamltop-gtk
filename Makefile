@@ -25,14 +25,11 @@
 #
 include master.Makefile
 
-PACKAGES=gtktop,lablgtk2.init
+PACKAGES=compiler-libs.toplevel,gtktop,lablgtk2.init
 
 OF_FLAGS=-package $(PACKAGES)
 
-INCLUDES= \
-	-I $(OCAML_SRC_DIR)/parsing \
-	-I $(OCAML_SRC_DIR)/driver \
-	-I $(OCAML_SRC_DIR)/utils
+INCLUDES=
 
 COMPFLAGS= -annot $(INCLUDES)
 
@@ -46,7 +43,7 @@ all: $(OCAMLTOP)
 
 $(LIB): $(CMIFILES) $(CMOFILES)
 	$(OCAMLFIND) ocamlc -a -o $@ $(OF_FLAGS) $(COMPFLAGS) \
-	toplevellib.cma $(CMOFILES)
+	$(CMOFILES)
 
 $(OCAMLTOP): $(LIB) ocamltop.cmo
 	$(OCAMLFIND) ocamlc -o $@ $(OF_FLAGS) -linkpkg $(COMPFLAGS) \
