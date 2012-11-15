@@ -25,7 +25,7 @@
 #
 include master.Makefile
 
-PACKAGES=compiler-libs.toplevel,gtktop,lablgtk2.init
+PACKAGES=compiler-libs.toplevel,gtktop,lablgtk2.auto-init
 
 OF_FLAGS=-package $(PACKAGES)
 
