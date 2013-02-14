@@ -59,14 +59,22 @@ webdoc:
 
 # installation :
 ################
-install: all
+install: install-lib install-bin
+
+install-lib: all
 	$(OCAMLFIND) install $(PACKAGE) META LICENSE \
 	$(LIB) $(CMIFILES) ocamltop.cmo
+
+install-bin: all
 	$(MKDIR) $(OCAMLBIN)
 	$(CP) mk-ocamltop-gtk $(OCAMLTOP) $(OCAMLBIN)/
 
-uninstall:
+uninstall: uninstall-lib uninstall-bin
+
+uninstall-lib:
 	ocamlfind remove $(PACKAGE)
+
+uninstall-bin:
 	$(RM) $(OCAMLBIN)/mk-ocamltop-gtk
 	$(RM) $(OCAMLBIN)/$(OCAMLTOP)
 
